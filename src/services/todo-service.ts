@@ -3,7 +3,6 @@ class Todo {
   todoList: any = '';
 
   addTodo(event) {
-      console.log("event: ", event.target.value)
       this.todoList = [...this.todoList, event.target.value ]
       console.log("todoList: ", this.todoList)
   }
@@ -14,9 +13,9 @@ class Todo {
   }
 
   deleteTodo(item) {
-    this.todoList = this.todoList.filter(item2 => {
-      return item2 !== item
-   })
+      this.todoList = this.todoList.filter(item2 => {
+        return item2 !== item
+      })
   }
 
 }

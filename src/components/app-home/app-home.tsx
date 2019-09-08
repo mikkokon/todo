@@ -14,6 +14,7 @@ export class AppHome {
   @State() showToDo: any = [];
   index: number = 0;
 
+  // Get updated array from service
   refresh() {
     this.showToDo = TodoData.getTodo()
   }
@@ -55,7 +56,6 @@ export class AppHome {
                 placeholder="type todo .. and press enter "
             />
           </ion-item>
-
       </ion-content>
     ];
   }
