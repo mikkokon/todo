@@ -6,14 +6,26 @@ import { Component, State,  h } from '@stencil/core';
 })
 export class AppHome {
 
+  // SIIRRÄ HYÖDYLLISET JUTUT TOOL-KITTIIN  !!!
+
   // Tee interface
   @State() todoList: any = [];
+  index: number = 0;
 
-  putTodo(event) {
+
+  add(event) {
       console.log("event: ", event.target.value)
       this.todoList = [...this.todoList, event.target.value ]
-      //this.todoList.push(event.target.value)
       console.log("todoList: ", this.todoList)
+  }
+
+  delete(item) {
+      let itemRemovedArr = this.todoList.filter(item2 => {
+         return item2 !== item
+      })
+    this.todoList = itemRemovedArr;
+
+      console.log("todoList after: ", itemRemovedArr)
   }
 
   render() {
@@ -27,25 +39,20 @@ export class AppHome {
       <ion-content class="ion-padding">
           <div>
              {this.todoList.map((item) =>
-                <div>
-                  {item}
-                </div>)}
+                <div onClick={() => this.delete(item)}>{item}</div>)}
           </div>
 
           <ion-item>
-                <ion-input
-                // this.handleClick() tallentaa merkkijonoa muuttujaan this.message
-                // this.enterPressed() tulostaa vain sen hetkisen this.messagen sisällön
-               // onInput={event => this.handleClick(event)}
+            <ion-input
                 onKeyPress={event => {
                   if (event.key === "Enter") {
-                    this.putTodo(event);
+                    this.add(event);
                   }
                 }}
                 clear-input = {true}
-                placeholder="type message...and press enter"
-                />
-            </ion-item>
+                placeholder="type todo .. and press enter "
+            />
+          </ion-item>
 
       </ion-content>
     ];
