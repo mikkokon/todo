@@ -1,5 +1,7 @@
 import { Component, State,  h } from '@stencil/core';
 
+import { TodoData } from '../../services/todo-service';
+
 @Component({
   tag: 'app-home',
   styleUrl: 'app-home.css'
@@ -9,23 +11,23 @@ export class AppHome {
   // SIIRRÄ HYÖDYLLISET JUTUT TOOL-KITTIIN  !!!
 
   // Tee interface
-  @State() todoList: any = [];
+  @State() showToDo: any = [];
   index: number = 0;
+
+  refresh() {
+    this.showToDo = TodoData.getTodo()
+  }
 
 
   add(event) {
-      console.log("event: ", event.target.value)
-      this.todoList = [...this.todoList, event.target.value ]
-      console.log("todoList: ", this.todoList)
+      TodoData.addTodo(event);
+      this.refresh();
   }
 
-  delete(item) {
-      let itemRemovedArr = this.todoList.filter(item2 => {
-         return item2 !== item
-      })
-    this.todoList = itemRemovedArr;
 
-      console.log("todoList after: ", itemRemovedArr)
+  delete(item) {
+      TodoData.deleteTodo(item)
+      this.refresh();
   }
 
   render() {
@@ -38,7 +40,7 @@ export class AppHome {
 
       <ion-content class="ion-padding">
           <div>
-             {this.todoList.map((item) =>
+             {this.showToDo.map((item) =>
                 <div onClick={() => this.delete(item)}>{item}</div>)}
           </div>
 
