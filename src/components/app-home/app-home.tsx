@@ -1,6 +1,6 @@
 import { Component, State,  h } from '@stencil/core';
-
 import { TodoData } from '../../services/todo-service';
+import { Product } from '../../interfaces/interface';
 
 @Component({
   tag: 'app-home',
@@ -8,11 +8,12 @@ import { TodoData } from '../../services/todo-service';
 })
 export class AppHome {
 
-  // SIIRRÄ HYÖDYLLISET JUTUT TOOL-KITTIIN  !!!
 
   // Tee interface
-  @State() showToDo: any = [];
+  @State() showToDo: Product[] = [{key:0, value:null}];
   index: number = 0;
+
+  private i = 0;
 
   // Get updated array from service
   refresh() {
@@ -21,7 +22,9 @@ export class AppHome {
 
 
   add(event) {
-      TodoData.addTodo(event);
+      this.i++;
+      let addedItem = {key: this.i, value: event.target.value }
+      TodoData.addTodo(addedItem);
       this.refresh();
   }
 
@@ -42,7 +45,7 @@ export class AppHome {
       <ion-content class="ion-padding">
           <div>
              {this.showToDo.map((item) =>
-                <div onClick={() => this.delete(item)}>{item}</div>)}
+                <div onClick={() => this.delete(item)}>{item.value}</div>)}
           </div>
 
           <ion-item>

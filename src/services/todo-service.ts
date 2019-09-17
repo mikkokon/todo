@@ -1,9 +1,11 @@
+import { Product } from '../interfaces/interface';
+
 class Todo {
 
-  todoList: any = '';
+  todoList: Product[] = [];
 
   addTodo(event) {
-      this.todoList = [...this.todoList, event.target.value ]
+      this.todoList = [...this.todoList, event ]
       console.log("todoList: ", this.todoList)
   }
 
@@ -13,8 +15,9 @@ class Todo {
   }
 
   deleteTodo(item) {
+      console.log("item: ", item)
       this.todoList = this.todoList.filter(item2 => {
-        return item2 !== item
+        return item2.key !== item.key
       })
   }
 
