@@ -16,23 +16,23 @@ export class AppHome {
   private i = 0;
 
   // Get updated array from service
-  refresh() {
-    this.showToDo = TodoData.getTodo()
+  async refresh() {
+    this.showToDo = await TodoData.getTodo()
   }
 
 
   add(event) {
-      this.i++;
-      let addedItem = {key: this.i, value: event.target.value }
+      let addedItem = {key: this.i++, value: event.target.value }
       TodoData.addTodo(addedItem);
       this.refresh();
   }
 
 
-  delete(item) {
-      TodoData.deleteTodo(item)
+  async delete(item) {
+      await TodoData.deleteTodo(item)
       this.refresh();
   }
+
 
   render() {
     return [
@@ -43,11 +43,16 @@ export class AppHome {
       </ion-header>,
 
       <ion-content class="ion-padding">
-          <div>
-             {this.showToDo.map((item) =>
-                <div onClick={() => this.delete(item)}>{item.value}</div>)}
-          </div>
-
+           <ion-list>
+              {this.showToDo.map((item) =>
+                <ion-item-sliding>
+                    <ion-item>{item.value}</ion-item>
+                    <ion-item-options side="end">
+                       <ion-item-option color="danger" onClick={() => this.delete(item)}>DELETE</ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+              )}
+          </ion-list>
           <ion-item>
             <ion-input
                 onKeyPress={event => {
