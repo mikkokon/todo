@@ -24,9 +24,12 @@ export class AppHome {
   }
 
 
-  // Get updated array from service
-  async refresh() {
+  async refresh(event?) {
+    console.log("event: ", event)
     this.showToDo = await TodoData.getTodo();
+    if (event) {
+      event.target.complete();
+    }
   }
 
 
@@ -52,6 +55,9 @@ export class AppHome {
       </ion-header>,
 
       <ion-content class="ion-padding">
+        <ion-refresher slot="fixed" onIonRefresh={event => this.refresh(event)}>
+                              <ion-refresher-content />
+                            </ion-refresher>
            <ion-list>
               {this.showToDo.map((item) =>
                 <ion-item-sliding>
