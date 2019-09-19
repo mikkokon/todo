@@ -9,15 +9,24 @@ import { Product } from '../../interfaces/interface';
 export class AppHome {
 
 
-  // Tee interface
   @State() showToDo: Product[] = [{key:0, value:null}];
+
   index: number = 0;
 
   private i = 0;
 
+  async componentDidLoad() {
+    this.showToDo = await TodoData.getTodo();
+    if (this.showToDo) {
+      TodoData.firstRefresh(this.showToDo);
+    }
+    this.refresh();
+  }
+
+
   // Get updated array from service
   async refresh() {
-    this.showToDo = await TodoData.getTodo()
+    this.showToDo = await TodoData.getTodo();
   }
 
 
