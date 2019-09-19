@@ -1,5 +1,25 @@
 /* Document Level Styles */
 
+/* Vaikuttaa kaikkiin sivuihin, jollei yksittäisen sivun määritykset yliaja: */
+:root {
+  --ion-item-background-color: #1f1e1e;
+  --ion-background-color: #96ceb4;
+
+  --ion-color-item: #ffcc5c;
+  --ion-color-item-rgb: 255,204,92;
+  --ion-color-item-contrast: #000000;
+  --ion-color-item-contrast-rgb: 0,0,0;
+  --ion-color-item-shade: #e0b451;
+  --ion-color-item-tint: #ffd16c;
+
+  --ion-color-toolbar: #88d8b0;
+  --ion-color-toolbar-rgb: 136,216,176;
+  --ion-color-toolbar-contrast: #000000;
+  --ion-color-toolbar-contrast-rgb: 0,0,0;
+  --ion-color-toolbar-shade: #78be9b;
+  --ion-color-toolbar-tint: #94dcb8;
+  }
+
 /*
   The imports below are needed to include our light dom css for global styles such as fonts and colors.
   You can comment out any of these imports if you do not need that css. For example, if you have your own
@@ -29,3 +49,34 @@
   More info about color theming using Ionic:
   https://ionicframework.com/docs/theming/color-generator
 */
+
+/* Yksittäinen komponentti käyttää. Attribuutti annetaan esim. <ion-item color = "sun"> */
+/* Eli ion-color jätetään pois */
+/* Nämä värit kannattaa generoida ionicin color-generatorilla */
+/* https://ionicframework.com/docs/theming/color-generator */
+.ion-color-sun {
+  --ion-color-base: #ffff00;
+  --ion-color-base-rgb: 255,255,0;
+  --ion-color-contrast: #000000;
+  --ion-color-contrast-rgb: 0,0,0;
+  --ion-color-shade: #e0e000;
+  --ion-color-tint: #ffff1a;
+}
+
+.ion-color-item {
+  --ion-color-base: var(--ion-color-item);
+  --ion-color-base-rgb: var(--ion-color-item-rgb);
+  --ion-color-contrast: var(--ion-color-item-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-item-contrast-rgb);
+  --ion-color-shade: var(--ion-color-item-shade);
+  --ion-color-tint: var(--ion-color-item-tint);
+}
+
+.ion-color-toolbar {
+  --ion-color-base: var(--ion-color-toolbar);
+  --ion-color-base-rgb: var(--ion-color-toolbar-rgb);
+  --ion-color-contrast: var(--ion-color-toolbar-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-toolbar-contrast-rgb);
+  --ion-color-shade: var(--ion-color-toolbar-shade);
+  --ion-color-tint: var(--ion-color-toolbar-tint);
+}

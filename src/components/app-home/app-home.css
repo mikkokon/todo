@@ -1,0 +1,44 @@
+/* You cannot style any of the internal elements of a web component that uses a
+Shadow DOM from outside of the web component using CSS selectors
+You can style the internal elements of a web component that uses a Shadow DOM if
+CSS variables are being used, as you can change the values of the CSS variables.
+You can style slotted content inside of a web component that uses a Shadow DOM
+(i.e. content you have supplied to the web component) from outside of the web
+component
+You can style the host element of a web component that is using a Shadow DOM
+(i.e. the element you use to add the web component to a page) from outside of the
+web component */
+
+/* Siksi app-home -tag, jotta vaikutus koko sivuun, muuten ei tarvi ko sivun tagia laittaa */
+/* Tai vastaavasti ion-content alueelle:
+ion-content {
+  --ion-background-color: #000;
+  } */
+
+/* Vastaava globaali määritys on app.css:ssa, mutta alla oleva ajaa yli */
+/* Huom. ei tarvi var -sanaa kuten tehtäisiin, jos tällä css-sivulla määriteltäisiin muuttuja:
+background-color: var(--ion-item-background-color); */
+app-home {
+  /* --ion-background-color: #88d8b0; */
+  /* --ion-placeholder-color: red;  ei toimi? */
+}
+
+/* CSS Custom properties
+https://ionicframework.com/docs/api/item  */
+/* TAI :
+voidaan katsoa right-click ja inspect selaimessa  -- LAITA filter: '--'  !!  */
+ion-item {
+  --background: green;
+  /* --color:white; */
+  /* TAI: , koska slot:n css -attribuutteja voi säätää */
+  color:white;
+  /* --background-hover: yellow;
+  --border-radius: 10%; */
+}
+
+/* .type-todo {
+   color: red;
+   position: relative;
+   bottom: 2vh;
+   left:1vw;
+} */

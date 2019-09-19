@@ -49,37 +49,38 @@ export class AppHome {
   render() {
     return [
       <ion-header>
-        <ion-toolbar color="primary">
-          <ion-title>ToDo</ion-title>
+        <ion-toolbar color="toolbar">
+          <ion-title>T o D o</ion-title>
         </ion-toolbar>
       </ion-header>,
 
-      <ion-content class="ion-padding">
+      <ion-content>
         <ion-refresher slot="fixed" onIonRefresh={event => this.refresh(event)}>
                               <ion-refresher-content />
                             </ion-refresher>
            <ion-list>
               {this.showToDo.map((item) =>
                 <ion-item-sliding>
-                    <ion-item>{item.value}</ion-item>
+                    <ion-item color="item" >{item.value}</ion-item>
                     <ion-item-options side="end">
                        <ion-item-option color="danger" onClick={() => this.delete(item)}>DELETE</ion-item-option>
                     </ion-item-options>
                 </ion-item-sliding>
               )}
           </ion-list>
-          <ion-item>
-            <ion-input
-                onKeyPress={event => {
-                  if (event.key === "Enter") {
-                    this.add(event);
-                  }
-                }}
-                clear-input = {true}
-                placeholder="type todo .. and press enter "
-            />
-          </ion-item>
-      </ion-content>
+      </ion-content>,
+
+       <ion-item class="type-todo" color = "item">
+          <ion-input
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                  this.add(event);
+                }
+              }}
+              clear-input = {true}
+              placeholder="type todo .. and press enter "
+          />
+      </ion-item>
     ];
   }
 }
